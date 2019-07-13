@@ -3,27 +3,39 @@ let time = 0;
 let x = 0;
 let y = 0;
 let points = [];
-let slider;
+let nslider;
+let speedslider;
+let checkbox;
 
 function setup() {
 	createCanvas(1800, 800);
-	slider = createSlider(1,100,1);
+	textSize(20);
+	checkbox = createCheckbox('', false);
+	checkbox.position(10, 810);
+	nslider = createSlider(1,100,1);
+	nslider.position(10, 840);
+	speedslider = createSlider(0.1,5,1,0.1);
+	speedslider.position(10, 870);
 }
 
 function draw() {
 	background(210);
-	noFill();
+	fill(0);
 	
-	angleMode(DEGREES);
-	
-	let n = slider.value();
+	let speed = speedslider.value();
 	let r = radius;
 	let oldx = 0;
 	let oldy = 0;
 	let fact = 0;
+	let n = nslider.value();
 	
+	text('line', checkbox.x + 15, checkbox.y-95);
+	text('circles (' + n + ')', nslider.x + nslider.width + 15, nslider.y-95);
+	text('speed (x' + speedslider.value() + ')', speedslider.x + speedslider.width + 15, speedslider.y-95);
+	
+	noFill();
+	angleMode(DEGREES);
 	translate(300, height/2);
-	
 	strokeWeight(15);
 	point(0,0);
 	strokeWeight(1);
@@ -38,6 +50,9 @@ function draw() {
 		oldy = y;
 		if (i === n) {
 			points.unshift(y);
+			if (checkbox.checked()) {
+				line(x,y,400,y);
+			}
 		}
 	}
 	
@@ -58,5 +73,5 @@ function draw() {
 	
 	pop();
 	
-	time++;
+	time+=speed;
 }
