@@ -12,9 +12,9 @@ function setup() {
 	textSize(20);
 	checkbox = createCheckbox('', false);
 	checkbox.position(10, 810);
-	nslider = createSlider(1,100,1);
+	nslider = createSlider(1,200,1);
 	nslider.position(10, 840);
-	speedslider = createSlider(0.1,5,1,0.1);
+	speedslider = createSlider(0,5,1,0.1);
 	speedslider.position(10, 870);
 }
 
